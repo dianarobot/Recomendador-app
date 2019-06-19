@@ -1,0 +1,2 @@
+# Recomendador-app
+Proyecto IA
