@@ -1,0 +1,15 @@
+% start S
+
+S[sem=<app(?vp,?pp)>] -> V[sem=?vp] PP[sem=?pp]
+PP[sem=<?np>] -> P[sem=?p] POS[sem=?np]
+P[sem=<en>] -> 'en'
+POS[sem=<1>] -> '1' | "uno"
+POS[sem=<2>] -> '2' | "dos"
+POS[sem=<3>] -> '3' | "tres"
+POS[sem=<4>] -> '4' | "cuatro"
+POS[sem=<5>] -> '5' | "cinco"
+POS[sem=<6>] -> '6' | "seis"
+POS[sem=<7>] -> '7' | "siete"
+POS[sem=<8>] -> '8' | "ocho"
+POS[sem=<9>] -> '9' | "nueve"
+V[sem=<\x.play(x)>] -> 'tira'
