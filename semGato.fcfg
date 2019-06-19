@@ -12,4 +12,5 @@ POS[sem=<6>] -> '6' | "seis"
 POS[sem=<7>] -> '7' | "siete"
 POS[sem=<8>] -> '8' | "ocho"
 POS[sem=<9>] -> '9' | "nueve"
+POS[sem=<10>] -> '10' | "diez"
 V[sem=<\x.play(x)>] -> 'tira'
