@@ -23,7 +23,7 @@ class VoiceController():
 		music = pyglet.media.load(audioName, streaming=False)
 		music.play()
 		sleep(music.duration) #prevent from killing
-		os.remove(audioName) #remove temperory file
+		os.remove(audioName) #remove temporary file
 
 	#get text from speaker (speech_recognition)
 	def getText(self, order):
@@ -73,8 +73,3 @@ class VoiceController():
 				return pos
 		return sem
 
-if __name__ == "__main__":
-	#validateGrammar(self, speakerText):
-	pos = VoiceController().validateGrammar("tira en 2")
-	pos1= VoiceController().getPosition(pos)
-	#print(pos)
