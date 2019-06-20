@@ -12,21 +12,40 @@ from grammar import VoiceController
 
 if __name__ == "__main__":
 	vc = VoiceController()
-	text = "error"
-	while text != "Hola":
-			print("RecApp: Nadie me ha dicho hola :( ")
-			text = vc.getOrder()
-			print(text)
+	#response = "error"
+	#while response != "Hola":
+	#		print("RecApp: Nadie me ha dicho hola :( ")
+	#		response = vc.getText()
+	#		print(response)
 
-	vc.speak("Hola, ¿Cómo te llamas?", "audio")
+	#vc.speak("Hola, ¿Cómo te llamas?", "audio")
+	#response = "error"
+	#while response == "error":
+	#		response = vc.getText()
+	#		print(response)
+	#		if response == "error":
+	#			vc.speak("¿Cuál es tu nombre?", "audio")
+	### AGREGAR NOMBRE EN LA KB
 
 	#Ocupación
 	vc.speak("¿Eres estudiante o trabajador?", "audio")
+	response = vc.getResponse()
+	print(response)
+	### AGREGAR OCUPACIÓN EN LA KB
 
 	#Trabajador
 	vc.speak("¿Eres trabajador activo o jubilado?", "audio")
+	response = vc.getResponse()
+	print(response)
+	### AGREGAR OCUPACIÓN EN LA KB
 
 	# Estudiante
 	vc.speak("¿Eres estudiante de Jardín de niños o de Primaria?", "audio")
+	response = vc.getResponse()
+	print(response)
+	### AGREGAR OCUPACIÓN EN LA KB
 
 	vc.speak("¿Eres estudiante de: la Secundaria, la Preparatoria o la Universidad?", "audio")
+	response = vc.getResponse()
+	print(response)
+	### AGREGAR OCUPACIÓN EN LA KB

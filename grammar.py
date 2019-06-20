@@ -47,12 +47,15 @@ class VoiceController():
 		try:
 			sem = -1
 			tokens = speakerText.split()
+			print(tokens)
 			cp = load_parser('semRecomendadorApp.fcfg', trace=0)
 			tree = cp.parse_one(tokens)
+			print(tree)
 			if tree is not None:
 				sem = tree.label()['sem']
 			return sem
 		except ValueError:
+			print("ValueError")
 			return sem
 
 	def getPosition(self, treeRoot):
@@ -65,20 +68,14 @@ class VoiceController():
 			self.speak("No es una opción válida", "noValida.mp3")
 			return -1
 
-""" Obtiene lo que usuario habla y valida:
-		si la palabra es ["hola", "Hola", "error"], la devuelve
-		en otro caso, valida la semántica y devuelve el valor
-"""
-	def getOrder(self):
+	""" Obtiene el texto del usuario y valida con "validateGrammar"
+	"""
+	def getResponse(self):
 		sem = -1
-		while sem == -1:
-			speakerOrder = self.getText()
-			if speakerOrder == 'hola' or speakerOrder == 'Hola' or speakerOrder == 'error':
-				sem = speakerOrder
-			else:
-				sem = self.validateGrammar(speakerOrder.lower())
-				#print(sem)
-				#pos = self.getPosition(sem)
-				return 1
+		speakerOrder = self.getText()
+		print("response"+speakerOrder)
+		sem = self.validateGrammar(speakerOrder.lower())
+			#print(sem)
+			#pos = self.getPosition(sem)
 		return sem
 

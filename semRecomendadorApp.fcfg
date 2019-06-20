@@ -1,19 +1,31 @@
 % start S
 
 S[sem=<app(?vp,?noun)>] -> V[sem=?vp] N[sem=?noun]
-N[sem=<?no>] -> OcupacionT[sem=?no]
-N[sem=<?no>] -> OcupacionE[sem=?no]
-N[sem=<?no>] -> Trabajo[sem=?no]
-N[sem=<?no>] -> OcupacionE[sem=?no] PP[sem<?pp>] Estudiante[sem=?no]
-N[sem=<?no>] -> OcupacionT[sem=?no] Trabajo[sem=?no]
-PP[sem=<?de>] -> "de"
-OcupacionT[sem=<trabajador>] -> "trabajador"
-OcupacionE[sem=<estudiante>] -> "estudiante"
-Trabajo[sem=<activo>] -> "activo"
-Trabajo[sem=<jubilado>] -> "jubilado"
-Estudiante[sem=<preescolar>] -> "kinder" | "preescolar" | "Jardín de niños"
-Estudiante[sem=<primaria>] -> "primaria"
-Estudiante[sem=<secundaria>] -> "secundaria"
-Estudiante[sem=<mediaSuperior>] -> "preparatoria" | "bachillerato" | "prepa"
-Estudiante[sem=<universidad>] -> "universidad"
+
+N[sem=<?no>] -> OT[sem=?no]
+N[sem=<?no>] -> OE[sem=?no]
+
+N[sem=<?no>] -> OT[sem=?oc] TRA[sem=?no]
+N[sem=<?no>] -> OT[sem=?oc] TRJ[sem=?no]
+
+N[sem=<?no>] -> OE[sem=?o] P[sem=?p] EKIN[sem=?no]
+N[sem=<?no>] -> OE[sem=?o] P[sem=?p] EPRI[sem=?no]
+N[sem=<?no>] -> OE[sem=?o] P[sem=?p] ESEC[sem=?no]
+N[sem=<?no>] -> OE[sem=?o] P[sem=?p] EPRE[sem=?no]
+N[sem=<?no>] -> OE[sem=?o] P[sem=?p] EUNI[sem=?no]
+
+P[sem=<de>] -> 'de'
+
+OT[sem=<trabajador>] -> "trabajador"
+OE[sem=<estudiante>] -> "estudiante"
+
+TRA[sem=<activo>] -> "activo"
+TRJ[sem=<jubilado>] -> "jubilado"
+
+EKIN[sem=<preescolar>] -> "preescolar" | "jardín"
+EPRI[sem=<primaria>] -> "primaria"
+ESEC[sem=<secundaria>] -> "secundaria"
+EPRE[sem=<mediaSuperior>] -> "preparatoria" | "bachillerato" | "prepa"
+EUNI[sem=<universidad>] -> "universidad"
+
 V[sem=<\x.be(x)>] -> 'soy'
