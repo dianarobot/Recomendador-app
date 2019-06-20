@@ -9,21 +9,26 @@ Edited on June 19 11:30:50 2019
 """
 
 from grammar import VoiceController
+from kb import KnowledgeController
 
 if __name__ == "__main__":
 	vc = VoiceController()
-	#response = "error"
-	#while response != "Hola":
-	#		print("RecApp: Nadie me ha dicho hola :( ")
-	#		response = vc.getText()
+	knowb = KnowledgeController()
+	response = "error"
+	while response != "Hola":
+			print("RecApp: Nadie me ha dicho hola :( ")
+			response = vc.getText()
 
-	#vc.speak("Hola, ¿Cómo te llamas?", "audio")
-	#response = "error"
-	#while response == "error":
-	#		response = vc.getText()
-	#		if response == "error":
-	#			vc.speak("¿Cuál es tu nombre?", "audio")
-	### AGREGAR NOMBRE EN LA KB
+	vc.speak("Hola, ¿Cómo te llamas?", "audio")
+	response = "error"
+	while response == "error":
+			response = vc.getText()
+			if response == "error":
+				vc.speak("¿Cuál es tu nombre?", "audio")
+	name = response
+	### AGREGAR PERSONA A LA KB
+	knowb.setData('persona', name)
+	knowb.showDataByEstereotipo('persona')
 
 	#Ocupación
 	response = -1
@@ -32,6 +37,8 @@ if __name__ == "__main__":
 		response = vc.getResponse()
 	print(response)
 	### AGREGAR OCUPACIÓN EN LA KB
+	knowb.setData(response, name)
+	knowb.showDataByEstereotipo(response)
 
 	if response == "trabajador":
 		#Trabajador
@@ -41,6 +48,8 @@ if __name__ == "__main__":
 			response = vc.getResponse()
 		print(response)
 		### AGREGAR TIPO DE TRABAJADOR EN LA KB
+		knowb.setData(response, name)
+		knowb.showDataByEstereotipo(response)
 	else:
 		# Estudiante
 		response = -1
@@ -54,3 +63,5 @@ if __name__ == "__main__":
 					response = vc.getResponse()
 		print(response)
 		### AGREGAR TIPO DE Estudiante EN LA KB
+		knowb.setData(response, name)
+		knowb.showDataByEstereotipo(response)
