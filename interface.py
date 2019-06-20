@@ -1,3 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on June 19 11:30:50 2019
+Edited on June 19 11:30:50 2019
+
+@author: Diana Rocha Botello
+@author: Lorena Guadalupe Zavaleta Rivera
+"""
+
 from grammar import VoiceController
 
 if __name__ == "__main__":
@@ -19,4 +29,4 @@ if __name__ == "__main__":
 	# Estudiante
 	vc.speak("¿Eres estudiante de Jardín de niños o de Primaria?", "audio")
 
-	vc.speak("¿Qué estudias: la Secundaria, la Preparatoria o la Universidad?", "audio")
+	vc.speak("¿Eres estudiante de: la Secundaria, la Preparatoria o la Universidad?", "audio")

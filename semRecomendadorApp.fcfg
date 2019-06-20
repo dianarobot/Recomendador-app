@@ -6,9 +6,7 @@ N[sem=<?no>] -> OcupacionE[sem=?no]
 N[sem=<?no>] -> Trabajo[sem=?no]
 N[sem=<?no>] -> OcupacionE[sem=?no] PP[sem<?pp>] Estudiante[sem=?no]
 N[sem=<?no>] -> OcupacionT[sem=?no] Trabajo[sem=?no]
-N[sem=<?no>] -> P[sem<?l>] Estudiante[sem=?no] 
 PP[sem=<?de>] -> "de"
-P[sem=<?l>] -> "la" | "el"
 OcupacionT[sem=<trabajador>] -> "trabajador"
 OcupacionE[sem=<estudiante>] -> "estudiante"
 Trabajo[sem=<activo>] -> "activo"
@@ -19,4 +17,3 @@ Estudiante[sem=<secundaria>] -> "secundaria"
 Estudiante[sem=<mediaSuperior>] -> "preparatoria" | "bachillerato" | "prepa"
 Estudiante[sem=<universidad>] -> "universidad"
 V[sem=<\x.be(x)>] -> 'soy'
-V[sem=<\x.estudio(x)>] -> 'estudio'

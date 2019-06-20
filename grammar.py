@@ -42,6 +42,7 @@ class VoiceController():
 		except  Exception as e:
 			return "error"
 
+	#validate grammar and semantic
 	def validateGrammar(self, speakerText):
 		try:
 			sem = -1
@@ -64,6 +65,10 @@ class VoiceController():
 			self.speak("No es una opción válida", "noValida.mp3")
 			return -1
 
+""" Obtiene lo que usuario habla y valida:
+		si la palabra es ["hola", "Hola", "error"], la devuelve
+		en otro caso, valida la semántica y devuelve el valor
+"""
 	def getOrder(self):
 		sem = -1
 		while sem == -1:
