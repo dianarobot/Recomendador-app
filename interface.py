@@ -20,4 +20,3 @@ if __name__ == "__main__":
 	vc.speak("¿Eres estudiante de Jardín de niños o de Primaria?", "audio")
 
 	vc.speak("¿Qué estudias: la Secundaria, la Preparatoria o la Universidad?", "audio")
-	#print(pos)

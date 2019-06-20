@@ -17,6 +17,7 @@ from nltk import load_parser
 from nltk.parse.generate import generate
 
 class VoiceController():
+
 	# text to speech (gTTS and playsound player) 
 	def speak(self, audioString, audioName):
 		print("RecApp: "+audioString)
@@ -32,8 +33,6 @@ class VoiceController():
 		try:
 			r = sr.Recognizer()
 			mic = sr.Microphone()
-		#print(order)
-		#self.speak(order, "pedirOpcion.mp3")
 			with mic as source:
 				r.adjust_for_ambient_noise(source)
 				audio = r.listen(source)
