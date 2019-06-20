@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on March 26 00:30:50 2018
+Created on March 26 00:30:50 2019
+Edited on June 19 11:30:50 2019
 
 @author: Diana Rocha Botello
 """
@@ -18,6 +19,7 @@ from nltk.parse.generate import generate
 class VoiceController():
 	# text to speech (gTTS and playsound player) 
 	def speak(self, audioString, audioName):
+		print("RecApp: "+audioString)
 		tts = gTTS(text=audioString, lang='es')
 		tts.save(audioName)
 		music = pyglet.media.load(audioName, streaming=False)
@@ -26,23 +28,26 @@ class VoiceController():
 		os.remove(audioName) #remove temporary file
 
 	#get text from speaker (speech_recognition)
-	def getText(self, order):
-		r = sr.Recognizer()
-		mic = sr.Microphone()
-		print(order)
-		self.speak(order, "pedirOpcion.mp3")
-		with mic as source:
-			r.adjust_for_ambient_noise(source)
-			audio = r.listen(source)
-		texto = r.recognize_google(audio, language="es-MX")        
-		print("Dijiste: " + texto)
-		return texto;
+	def getText(self):
+		try:
+			r = sr.Recognizer()
+			mic = sr.Microphone()
+		#print(order)
+		#self.speak(order, "pedirOpcion.mp3")
+			with mic as source:
+				r.adjust_for_ambient_noise(source)
+				audio = r.listen(source)
+			texto = r.recognize_google(audio, language="es-MX")        
+			print("Dijiste: " + texto)
+			return texto;
+		except  Exception as e:
+			return "error"
 
 	def validateGrammar(self, speakerText):
 		try:
 			sem = -1
 			tokens = speakerText.split()
-			cp = load_parser('semGato.fcfg', trace=0)
+			cp = load_parser('semRecomendadorApp.fcfg', trace=0)
 			tree = cp.parse_one(tokens)
 			if tree is not None:
 				sem = tree.label()['sem']
@@ -60,16 +65,16 @@ class VoiceController():
 			self.speak("No es una opción válida", "noValida.mp3")
 			return -1
 
-	def getOrder(self, orden):
+	def getOrder(self):
 		sem = -1
 		while sem == -1:
-			speakerOrder = self.getText(orden)
-			if speakerOrder == 'salir' or speakerOrder == 'muestra movimientos':
+			speakerOrder = self.getText()
+			if speakerOrder == 'hola' or speakerOrder == 'Hola' or speakerOrder == 'error':
 				sem = speakerOrder
 			else:
 				sem = self.validateGrammar(speakerOrder.lower())
 				#print(sem)
-				pos = self.getPosition(sem)
-				return pos
+				#pos = self.getPosition(sem)
+				return 1
 		return sem
 
