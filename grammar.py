@@ -47,23 +47,20 @@ class VoiceController():
 		try:
 			sem = -1
 			tokens = speakerText.split()
-			print(tokens)
 			cp = load_parser('semRecomendadorApp.fcfg', trace=0)
 			tree = cp.parse_one(tokens)
-			print(tree)
 			if tree is not None:
 				sem = tree.label()['sem']
 			return sem
 		except ValueError:
-			print("ValueError")
 			return sem
 
-	def getPosition(self, treeRoot):
+	def getOption(self, treeRoot):
 		if treeRoot != -1:
 			strSem = str(treeRoot)
-			pos =  strSem[strSem.find('(')+1 : strSem.find(')')]
-			print(pos)
-			return pos
+			op =  strSem[strSem.find('(')+1 : strSem.find(')')]
+			#print(op)
+			return op
 		else:
 			self.speak("No es una opción válida", "noValida.mp3")
 			return -1
@@ -73,9 +70,11 @@ class VoiceController():
 	def getResponse(self):
 		sem = -1
 		speakerOrder = self.getText()
-		print("response"+speakerOrder)
-		sem = self.validateGrammar(speakerOrder.lower())
+		if speakerOrder == 'no' or speakerOrder == 'No':
+			sem = speakerOrder
+		else:
+			sem = self.validateGrammar(speakerOrder.lower())
 			#print(sem)
-			#pos = self.getPosition(sem)
+			option = self.getOption(sem)
+			return option
 		return sem
-
