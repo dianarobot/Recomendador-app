@@ -10,10 +10,13 @@ Edited on June 19 11:30:50 2019
 
 from grammar import VoiceController
 from kb import KnowledgeController
+from launcher import Launcher
 
 if __name__ == "__main__":
 	vc = VoiceController()
 	knowb = KnowledgeController()
+	launchApps = Launcher()
+
 	response = "error"
 	while response != "Hola":
 			print("RecApp: Nadie me ha dicho hola :( ")
@@ -28,17 +31,17 @@ if __name__ == "__main__":
 	name = response
 	### AGREGAR PERSONA A LA KB
 	knowb.setData('persona', name)
-	knowb.showDataByEstereotipo('persona')
+	#knowb.showDataByEstereotipo('persona')
 
 	#Ocupación
 	response = -1
 	while response == -1 or response == 'no':
 		vc.speak("¿Eres estudiante o trabajador?", "audio")
 		response = vc.getResponse()
-	print(response)
+	#print(response)
 	### AGREGAR OCUPACIÓN EN LA KB
 	knowb.setData(response, name)
-	knowb.showDataByEstereotipo(response)
+	#knowb.showDataByEstereotipo(response)
 
 	if response == "trabajador":
 		#Trabajador
@@ -46,10 +49,10 @@ if __name__ == "__main__":
 		while response == -1 or response == 'no':
 			vc.speak("¿Eres trabajador activo o jubilado?", "audio")
 			response = vc.getResponse()
-		print(response)
+		#print(response)
 		### AGREGAR TIPO DE TRABAJADOR EN LA KB
 		knowb.setData(response, name)
-		knowb.showDataByEstereotipo(response)
+		#knowb.showDataByEstereotipo(response)
 	else:
 		# Estudiante
 		response = -1
@@ -61,7 +64,11 @@ if __name__ == "__main__":
 				while response == -1 or response == 'no':
 					vc.speak("¿Eres estudiante de: la Secundaria, la Preparatoria o la Universidad?", "audio")
 					response = vc.getResponse()
-		print(response)
+		#print(response)
 		### AGREGAR TIPO DE Estudiante EN LA KB
 		knowb.setData(response, name)
-		knowb.showDataByEstereotipo(response)
+		#knowb.showDataByEstereotipo(response)
+
+	#Obtener Características con valor 5 para el usuario
+	face = knowb.getMaxValues(name)
+	launchApps.getUserApps(name, face, vc)

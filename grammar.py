@@ -55,6 +55,7 @@ class VoiceController():
 		except ValueError:
 			return sem
 
+	# Obtiene los valores de la semántica que se agregarán a la base de conocimiento
 	def getOption(self, treeRoot):
 		if treeRoot != -1:
 			strSem = str(treeRoot)

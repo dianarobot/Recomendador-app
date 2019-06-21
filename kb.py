@@ -48,7 +48,7 @@ class KnowledgeController():
     		tiene_interes(X, 'tareas', -5) <= trabajador(X)
     		tiene_interes(X, 'navegarIntenet', 4) <= trabajador(X)
     		tiene_interes(X, 'correo', 4) <= trabajador(X)
-    		tiene_interes(X, 'trabajo', 5) <= trabajador(X)
+    		tiene_interes(X, 'trabajo', 4) <= trabajador(X)
     	""")
     	pyDatalog.load("""
     		tiene_interes(X, 'videojuegos', 2) <= estudiante(X)
@@ -57,7 +57,7 @@ class KnowledgeController():
     		tiene_interes(X, 'caricaturas', 1) <= estudiante(X)
     		tiene_interes(X, 'musica', 3) <= estudiante(X)
     		tiene_interes(X, 'redesSociales', 3) <= estudiante(X)
-    		tiene_interes(X, 'tareas', 5) <= estudiante(X)
+    		tiene_interes(X, 'tareas', 4) <= estudiante(X)
     		tiene_interes(X, 'navegarIntenet', 4) <= estudiante(X)
     		tiene_interes(X, 'correo', 2) <= estudiante(X)
     		tiene_interes(X, 'trabajo', -5) <= estudiante(X)
@@ -162,21 +162,27 @@ class KnowledgeController():
     def setData(self, estereotipo, nombre):
     	pyDatalog.assert_fact(estereotipo, nombre)
 
+    def forgetData(self, estereotipo, nombre):
+    	pyDatalog.retract_fact(estereotipo,nombre)
+
     def showDataByEstereotipo(self, estereotipo):
     	W = pyDatalog.ask(estereotipo+"(X)")
     	print(W.answers)
 
+    def getMaxValues(self, nombre):
+    	W = pyDatalog.ask("tiene_interes('"+nombre+"',Y,5)")
+    	return W.answers[0]
+
     def showValues(self, nombre):
-    	W = pyDatalog.ask("tiene_interes("+nombre+",Y,Z)")
-    	print(W.answers)
+    	W = pyDatalog.ask("tiene_interes('"+nombre+"',Y,Z)")
+    	print(W)
 
 if __name__ == "__main__":
 	kb = KnowledgeController()
 	pyDatalog.assert_fact('estudiante', 'Juanito')
+	pyDatalog.retract_fact('estudiante', 'Juanito')
+	pyDatalog.assert_fact('primaria', 'Juanito')
 	pyDatalog.assert_fact('universidad', 'María')
 
-	W = pyDatalog.ask("tiene_interes('Juanito',Y,Z)")
-	print(W.answers)
-
-	W = pyDatalog.ask("tiene_interes('María',Y,Z)")
+	W = pyDatalog.ask("tiene_interes('Juanito',Y,5)")
 	print(W.answers)
