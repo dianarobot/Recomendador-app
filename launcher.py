@@ -14,12 +14,11 @@ class Launcher():
         opcionesAplicacion = []
         voiceController.speak("Éstas son las aplicaciones que podrían interesarte", "audio")
         for element in listCaracteristicas:
-            apps = self.getAppsByInterest(element)
-            print(apps)
+            apps = self.getAppsByInterest(element[0])
             for app in apps:
                 opcionesAplicacion.append(app)
                 voiceController.speak(str(app), "audio")
-        print(opcionesAplicacion)
+        #print(opcionesAplicacion)
         voiceController.speak("¿Cuál deseas utilizar ahora?", "audio")
         option = "error"
         seleccion = -1

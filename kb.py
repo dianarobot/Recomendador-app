@@ -23,7 +23,7 @@ class KnowledgeController():
     		estudiante(X) <= preescolar(X)
     		estudiante(X) <= primaria(X)
     		estudiante(X) <= secundaria(X)
-    		estudiante(X) <= media_superior(X)
+    		estudiante(X) <= mediaSuperior(X)
     		estudiante(X) <= universidad(X)
     	""")
     	pyDatalog.load("""
@@ -123,16 +123,16 @@ class KnowledgeController():
     		tiene_interes(X, 'trabajo', -5) <= secundaria(X)
     	""")
     	pyDatalog.load("""
-    		tiene_interes(X, 'videojuegos', 5) <= media_superior(X)
-    		tiene_interes(X, 'juegosInfantiles', -5) <= media_superior(X)
-    		tiene_interes(X, 'series', 4) <= media_superior(X)
-    		tiene_interes(X, 'caricaturas', 0) <= media_superior(X)
-    		tiene_interes(X, 'musica', 5) <= media_superior(X)
-    		tiene_interes(X, 'redesSociales', 5) <= media_superior(X)
-    		tiene_interes(X, 'tareas', 4) <= media_superior(X)
-    		tiene_interes(X, 'navegarIntenet', 4) <= media_superior(X)
-    		tiene_interes(X, 'correo', 3) <= media_superior(X)
-    		tiene_interes(X, 'trabajo', 0) <= media_superior(X)
+    		tiene_interes(X, 'videojuegos', 5) <= mediaSuperior(X)
+    		tiene_interes(X, 'juegosInfantiles', -5) <= mediaSuperior(X)
+    		tiene_interes(X, 'series', 4) <= mediaSuperior(X)
+    		tiene_interes(X, 'caricaturas', 0) <= mediaSuperior(X)
+    		tiene_interes(X, 'musica', 5) <= mediaSuperior(X)
+    		tiene_interes(X, 'redesSociales', 5) <= mediaSuperior(X)
+    		tiene_interes(X, 'tareas', 4) <= mediaSuperior(X)
+    		tiene_interes(X, 'navegarIntenet', 4) <= mediaSuperior(X)
+    		tiene_interes(X, 'correo', 3) <= mediaSuperior(X)
+    		tiene_interes(X, 'trabajo', 0) <= mediaSuperior(X)
     	""")
     	pyDatalog.load("""
     		tiene_interes(X, 'videojuegos', 5) <= universidad(X)
@@ -152,7 +152,7 @@ class KnowledgeController():
     	pyDatalog.assert_fact('estudiante', '')
     	pyDatalog.assert_fact('jubilado', '')
     	pyDatalog.assert_fact('primaria', '')
-    	pyDatalog.assert_fact('media_superior', '')
+    	pyDatalog.assert_fact('mediaSuperior', '')
     	pyDatalog.assert_fact('trabajador', '')
     	pyDatalog.assert_fact('activo', '')
     	pyDatalog.assert_fact('preescolar', '')
@@ -171,18 +171,8 @@ class KnowledgeController():
 
     def getMaxValues(self, nombre):
     	W = pyDatalog.ask("tiene_interes('"+nombre+"',Y,5)")
-    	return W.answers[0]
+    	return W.answers
 
     def showValues(self, nombre):
     	W = pyDatalog.ask("tiene_interes('"+nombre+"',Y,Z)")
     	print(W)
-
-if __name__ == "__main__":
-	kb = KnowledgeController()
-	pyDatalog.assert_fact('estudiante', 'Juanito')
-	pyDatalog.retract_fact('estudiante', 'Juanito')
-	pyDatalog.assert_fact('primaria', 'Juanito')
-	pyDatalog.assert_fact('universidad', 'María')
-
-	W = pyDatalog.ask("tiene_interes('Juanito',Y,5)")
-	print(W.answers)
