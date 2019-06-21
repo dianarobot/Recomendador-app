@@ -41,10 +41,10 @@ class Launcher():
             opcionesAplicacion.append('Disney latino')
         if element=="series":
             opcionesAplicacion.append('Netflix')
-            opcionesAplicacion.append('Amazon Video')
+            opcionesAplicacion.append('Amazon video')
         if element=="caricaturas":
             opcionesAplicacion.append('Netflix')
-            opcionesAplicacion.append('Youtube')
+            opcionesAplicacion.append('YouTube')
         if element=="musica":
             opcionesAplicacion.append('Spotify')
         if element=="redesSociales":
@@ -78,7 +78,7 @@ class Launcher():
             os.system(r"start chrome https://aja.disney.com/juegos")
         if app =="Netflix":
             os.system("start chrome www.netflix.com")
-        if app =="Amazon Video":
+        if app =="Amazon video":
             os.system(r"start chrome https://www.primevideo.com")
         if app =="Spotify":
             os.system(r"start C:\Users\lore_\AppData\Roaming\Spotify\Spotify.exe")
@@ -96,5 +96,5 @@ class Launcher():
             os.system(r"start chrome www.google.com/gmail/")
         if app =="Outlook":
             os.system(r"start chrome www.outlook.com")
-        if app  == "Youtube":
+        if app  == "YouTube":
             os.system(r"start chrome www.youtube.com")
